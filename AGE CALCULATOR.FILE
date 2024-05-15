@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+<body>
+    <h1>Age Calculator</h1>
+    <form id="ageForm">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+        <button type="submit">Calculate Age</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('ageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var dobInput = document.getElementById('dob').value;
+            var dob = new Date(dobInput);
+            var today = new Date();
+            var age = today.getFullYear() - dob.getFullYear();
+            var monthDiff = today.getMonth() - dob.getMonth();
+
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            document.getElementById('result').innerText = "Your age is " + age + " years.";
+        });
+    </script>
+</body>
+</html>
